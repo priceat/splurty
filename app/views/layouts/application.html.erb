@@ -7,8 +7,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <div class="col-xs-3">
+        <div class="circle">
+        <br />
+        Be brave
+        <br />
+        Be strong
+        <br />
+        Don't quit
+      </div>
+    </div>
+    <div class="col-xs-4 slogan">
+      Giving inspiration for the temporarily enslaved.
+    </div>
+    <div class="col-xs-5 links">
+      <%= link_to 'Contribute', '#' %>
+      <%= link_to 'About', '#' %>
+    </div>
+  </header>
+  <hr />
+  <br class="clear" />
 
-<%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="col-xs-6">
+        <%= link_to "This isn't enough, I need more", "#", :class => 'next-quote' %>
+      </div>
+      <div class="col-xs-6 footer-blurb">
+        Made in the Chestah! by Big Tate Price aka Voltron</a><br />
+        Feel better. Get Better.</a>
+      </div>
 
 </body>
 </html>

@@ -24,7 +24,7 @@
       Giving inspiration for the temporarily enslaved.
     </div>
     <div class="col-xs-8 col-xs-offset-1 col-sm-offset-0 col-sm-5 links">
-     <%= link_to 'Contribute', '#', :data => {:toggle => 'modal', :target => '#myModal'} %>
+     <%= link_to 'Contribute', '#', :id => 'contribute_link',  :data => {:toggle => 'modal', :target => '#myModal'} %>
      &nbsp;&nbsp;
       <%= link_to 'About', about_path %>
     </div>
@@ -41,7 +41,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="myModalLabel">Add a quote, player</h4>
         </div>
-       <%= simple_form_for Quote.new do |f| %>
+       <%= simple_form_for(@new_quote || Quote.new) do |f| %>
           <div class="modal-body">
             <%= f.input :saying, :label => "What do you want to say?", :placeholder => "Inspire us!" %>
             <br />
@@ -78,5 +78,12 @@
         Feel better. Get Better.</a>
       </div>
 
+      <% if @new_quote.present? && @new_quote.errors.present? %>
+        <script>
+        $(function() {
+          $('#contribute_link').click();
+        });
+        </script>
+      <% end %>
 </body>
 </html>

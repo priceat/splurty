@@ -5,11 +5,14 @@ class QuotesController < ApplicationController
   end
 
   def create
-    @quote = Quote.create(quote_params)
-    if @quote.invalid?
-      flash[:error] = '<strong>Try again clown</strong>'
+    @new_quote = Quote.create(quote_params)
+    if @new_quote.invalid?
+      @quote = Quote.order("RANDOM()").first
+      render :index, :status => :unprocessable_entity
+    else
+      @quote = @new_quote
+      render :index
     end
-    redirect_to root_path
   end
 
   def about

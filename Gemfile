@@ -33,3 +33,7 @@ gem 'bootstrap-sass', '~> 3.3.0'
 gem 'autoprefixer-rails'
 
 gem 'simple_form'
+gem 'simple_form-dropdown_select', '~> 0.2.0'
+
+gem 'binding_of_caller'
+gem 'better_errors'

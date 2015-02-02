@@ -4,6 +4,7 @@ class CreateQuotes < ActiveRecord::Migration
 
       t.string :saying
       t.string :author
+      t.references :category, index: true
 
       t.timestamps
     end

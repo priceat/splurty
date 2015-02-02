@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
   <title>Quoteable!</title>
@@ -41,11 +41,13 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="myModalLabel">Add a quote, player</h4>
         </div>
-       <%= simple_form_for @new_quote || Quote.new do |f| %>
+       <%= simple_form_for @category do |f| %>
           <div class="modal-body">
-            <%= f.input :saying, :label => "What do you want to say?", :placeholder => "Inspire us!" %>
-            <br />
-            <%= f.input :author, :label => "Who said it?", :placeholder => "Cite your source" %>
+            <%= f.input :title, as: :dropdown_select, collection: @category_titles, :label => "Quote Category", :include_blank => false %> 
+            <%= f.simple_fields_for :quotes do |quote| %>
+              <%= render 'quote_fields', :f => quote %>
+              <% end %>
+            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -71,7 +73,7 @@
   <div class="footer">
     <div class="container">
       <div class="col-xs-12 col-sm-6">
-        <%= link_to "This isn't enough, I need more", root_path, :class => 'next-quote' %>
+        <%= link_to "This quote bores me! I need a new one.", root_path, :class => 'next-quote' %>
       </div>
       <div class="col-xs-12 col-sm-6 footer-blurb">
         Made in the Chestah! by Big Tate Price aka Voltron</a><br />

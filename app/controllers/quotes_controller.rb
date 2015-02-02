@@ -1,18 +1,22 @@
 class QuotesController < ApplicationController
+  #before_action :set_category, only: [:index]
 
   def index
-    @quote = Quote.order("RANDOM()").first
+    @category = Category.order("RANDOM()").first
+    @quote = @category.quotes
   end
 
+
   def create
-    @new_quote = Quote.create(quote_params)
+    @category = Category.find(params[:category_id])
+    @new_quote = Quotes.create(quote_params)
 
     if @new_quote.invalid?
-      @quote = Quote.order("RANDOM()").first
+      @category = Category.order("RANDOM()").first
       render :index, :status => :unprocessable_entity
     else
       @quote = @new_quote
-      render :index
+      redirect_to @category.quotes
     end
 
   end
@@ -22,7 +26,13 @@ class QuotesController < ApplicationController
 
   private
 
-  def quote_params
-    params.require(:quote).permit(:saying, :author)
+
+  def set_category
+    @category = Category.find(params[:category_id])
   end
+
+  def quote_params
+    params.require(:quote).permit(:saying, :author, :category_id)
+  end
+  
 end

@@ -1,10 +1,13 @@
 <h2>
-  <span>Quoteable Saying No. <%= @quote.id %></span>
-
-<h1><%= @quote.saying %></h1>
-<h2 class="pull-right">- <%= @quote.author %></h2>
+   <span>Inspiring Quotes for:</span>
+  <h1><%= @category.title %></h1>
+  <% @category.quotes.each do |quote| %>
+<h2><%= quote.saying %></h2>
+<h2 class="pull-right">- <%= quote.author %></h2>
+<% end %>
 
 <br class="clear" />
 <br />
 <br />
 <br />
+<%= link_to 'Back', :back %> 
